@@ -48,3 +48,5 @@ if __name__ == '__main__':
     queue = sqs.get_queue_by_name(QueueName=config.get('bot_to_worker_queue_name'))
 
     main()
+
+# git test
