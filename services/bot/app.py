@@ -69,10 +69,10 @@ class YoutubeObjectDetectBot(Bot):
 
 
 if __name__ == '__main__':
-    with open('secrets/.telegramToken') as f:
+    with open('/home/ger/PycharmProjects/PolyBot/secrets/.telegramToken') as f:
         _token = f.read()
 
-    with open('common/config.json') as f:
+    with open('/home/ger/PycharmProjects/PolyBot/common/config.json') as f:
         config = json.load(f)
 
     sqs = boto3.resource('sqs', region_name=config.get('aws_region'))
