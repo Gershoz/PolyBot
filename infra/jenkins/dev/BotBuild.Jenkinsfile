@@ -1,18 +1,14 @@
-pipeline {
-    agent {
-//         docker {
-//                TODO build & push your Jenkins agent image, place the URL here
-//                image '<jenkins-agent-image>'
-//                args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-//
-//         }
-//     }
-
-    stages {
-        stage('Build') {
-            steps {
+pipeline
+{
+    stages
+    {
+        stage('Build')
+        {
+            steps
+            {
                 // TODO dev bot build stage
-                sh '''
+                sh
+                '''
                 aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 352708296901.dkr.ecr.eu-central-1.amazonaws.com
                 docker build -t gershoz_dev_bot_build:0.0.$BUILD_NUMBER .
                 docker tag gershoz_dev_bot_build:0.0.$BUILD_NUMBER 352708296901.dkr.ecr.eu-central-1.amazonaws.com/gershoz_dev_bot_build:0.0.$BUILD_NUMBER
@@ -20,6 +16,18 @@ pipeline {
                 '''
             }
         }
+    }
+}
+//     agent
+//     {
+//         docker
+//         {
+//                TODO build & push your Jenkins agent image, place the URL here
+//                image '<jenkins-agent-image>'
+//                args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+//         }
+//     }
+
 
 //         stage('Trigger Deploy') {
 //             steps {
@@ -27,6 +35,3 @@ pipeline {
 //                     string(name: 'BOT_IMAGE_NAME', value: "<image-name>")
 //                 ]
 //             }
-        }
-    }
-}
